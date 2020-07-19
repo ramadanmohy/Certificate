@@ -8,7 +8,10 @@ import React, {
 import MyContext from "../context/context";
 
 const Text = forwardRef(
-  ({ isDisplay, text, customChange, index, item, changeMode, x, y }, ref) => {
+  (
+    { isDisplay, text, customChange, index, item, type, changeMode, x, y },
+    ref
+  ) => {
     const [updatedText, setText] = useState("");
     const context = useContext(MyContext);
 
@@ -68,7 +71,6 @@ const Text = forwardRef(
       }
 
       function closeDragElement() {
-        /* stop moving when mouse button is released:*/
         document.onmouseup = null;
         document.onmousemove = null;
       }
@@ -86,11 +88,9 @@ const Text = forwardRef(
         function dragMouseDown(e) {
           e = e || window.event;
           e.preventDefault();
-          // get the mouse cursor position at startup:
           pos3 = e.clientX;
           pos4 = e.clientY;
           document.onmouseup = closeDragElement;
-          // call a function whenever the cursor moves:
           document.onmousemove = elementDrag;
         }
 
@@ -130,7 +130,7 @@ const Text = forwardRef(
         style={context.items[index].style}
         id={"item" + index}
       >
-        {text}
+        {type != "temp" ? text : "[ " + text + " ]"}
       </p>
     );
     if (!isDisplay)

@@ -34,24 +34,17 @@ const CK = () => {
 
   const renderItems = () => {
     return items.map((item, index) => {
-      if (item.type == "text")
-        return (
-          <Text
-            ref={textRef}
-            customChange={customChange}
-            changeMode={changeMode}
-            key={index}
-            item={item}
-            {...item}
-            index={index}
-          />
-        );
-      else
-        return (
-          <p key={index} id={"item" + index}>
-            {item.text}
-          </p>
-        );
+      return (
+        <Text
+          ref={textRef}
+          customChange={customChange}
+          changeMode={changeMode}
+          key={index}
+          item={item}
+          {...item}
+          index={index}
+        />
+      );
     });
   };
   const allowDrop = (ev) => {
@@ -62,7 +55,7 @@ const CK = () => {
     ev.preventDefault();
     let id = ev.dataTransfer.getData("id");
     const newItem = {
-      text: id == "text" ? "Text Here" : "[ Template Name ]",
+      text: id == "text" ? "Text Here" : "Template Name",
       type: id,
       x: ev.clientX,
       y: ev.clientY,

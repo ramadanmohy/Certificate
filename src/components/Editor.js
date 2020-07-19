@@ -67,7 +67,6 @@ const Editor = ({}) => {
             )}
           </div>
         </span>
-        <span className="color">Color</span>
       </div>
     );
   else return null;
